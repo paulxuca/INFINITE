@@ -15,8 +15,10 @@
 
 .appContainer {
   flex: 1;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   background-color: #f9f9f9;
+  display: flex;
 }
 
 p {

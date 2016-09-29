@@ -1,3 +1,4 @@
 .auth { /* stylelint-disable */
-
+  display: flex;
+  flex: 1;
 }
