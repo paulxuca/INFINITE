@@ -34,6 +34,46 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/news',
+      name: 'scroll',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Scroll/reducer'),
+          System.import('containers/Scroll/sagas'),
+          System.import('containers/Scroll'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('scroll', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/auth',
+      name: 'auth',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Auth/reducer'),
+          System.import('containers/Auth/sagas'),
+          System.import('containers/Auth'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('auth', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

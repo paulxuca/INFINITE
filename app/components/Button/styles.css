@@ -1,0 +1,8 @@
+.defaultButton { /* stylelint-disable */
+  height: 100%;
+  width: 100%;
+}
+
+.defaultButton:focus {
+  outline: 0;
+}
