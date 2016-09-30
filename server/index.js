@@ -9,9 +9,18 @@ const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 const app = express();
+const api = require('./api');
+const mongoose = require('mongoose');
+const bp = require('body-parser');
+mongoose.connect('mongodb://localhost/infinite', (err) => {
+  if (err) console.log(err);
+});
+
+app.use(bp.urlencoded({ extended: false }));
+app.use(bp.json());
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+app.use('/api', api);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

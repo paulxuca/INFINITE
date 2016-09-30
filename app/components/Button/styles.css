@@ -6,3 +6,53 @@
 .defaultButton:focus {
   outline: 0;
 }
+
+.button {
+  text-transform: uppercase;
+  padding: 10px 30px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  width: 150px;
+}
+
+.button:hover {
+  transition: 0.4s ease;
+}
+
+.button:focus {
+  outline: 0;
+}
+
+.primary {
+  composes: button;
+  background-color: #4888FF;
+  border: 1px solid #4888FF;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #3e74d8; 
+}
+
+.secondary {
+  border: 1px solid #4c4c4c;
+  composes: button;
+}
+
+.secondary:hover {
+  background-color: #EEE;
+}
+
+.social {
+  composes: button;
+  width: 300px;
+  border: 1px solid #4888FF;
+  color: #4888FF;
+}
+
+.social:hover {
+  background-color: #4888FF;
+  color: white;
+}

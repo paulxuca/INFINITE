@@ -9,10 +9,10 @@ import React from 'react';
 
 import styles from './styles.css';
 
-function Button({ className, style, onClick, children }) {
+function Button({ style, onClick, children, type }) {
   return (
     <button
-      className={className || styles.defaultButton}
+      className={styles[type] || styles.defaultButton}
       style={style}
       onClick={onClick}
     >
@@ -22,7 +22,7 @@ function Button({ className, style, onClick, children }) {
 }
 
 Button.propTypes = {
-  className: React.PropTypes.string,
+  type: React.PropTypes.string,
   style: React.PropTypes.object,
   onClick: React.PropTypes.func,
   children: React.PropTypes.node,
