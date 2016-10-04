@@ -9,6 +9,19 @@ import React from 'react';
 import styles from './styles.css';
 
 class SideNavigation extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor() {
+    super();
+    this.onClickOverlay = this.onClickOverlay.bind(this);
+  }
+
+  componentDidMount() {
+    this.overlay.addEventListener('click', this.onClickOverlay, { passive: true });
+  }
+
+  componentWillUnmount() {
+    this.overlay.removeEventListener('click', this.onClickOverlay, { passive: true });
+  }
+
 
   onClickOverlay(e) {
     if (this.props.open && this.sideNav && !this.sideNav.contains(e.target)) {
@@ -24,7 +37,7 @@ class SideNavigation extends React.Component { // eslint-disable-line react/pref
           opacity: this.props.open ? 1 : 0,
           visibility: this.props.open ? 'visible' : 'hidden',
         }}
-        onClick={(e) => this.onClickOverlay(e)}
+        ref={(overlay) => { this.overlay = overlay; }}
       >
         <div
           ref={(comp) => { this.sideNav = comp; }}
