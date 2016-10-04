@@ -1,0 +1,16 @@
+.sideNavigation__overlay {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(33,41,50,.75);
+  transition: 0.4s ease;
+}
+
+.sideNavigation__menu {
+  position: absolute;
+  height: 100vh;
+  width: 400px;
+  background-color: white;
+  transition: 0.4s ease;
+}

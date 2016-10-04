@@ -1,0 +1,21 @@
+.dropdown { /* stylelint-disable */
+  width: 200px;
+  min-height: 100px;
+  background-color: white;
+  position: absolute;
+  top: 70px;
+  box-shadow: 0 0 0 1px rgba(39,44,48,0.05),0 2px 7px 1px rgba(39,44,48,0.16);
+}
+
+.dropdown::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -5px;
+  background: #fff;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border-top-left-radius: 1px;
+  left: 95px;
+}

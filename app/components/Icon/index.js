@@ -6,18 +6,12 @@
 
 import React from 'react';
 import styles from './styles.css';
-import { search, profile, eye } from './iconMapping';
+import * as icons from './iconMapping';
 
-const iconMapping = {
-  search,
-  profile,
-  eye,
-};
-
-function Icon({ type, style, ...restOfProps }) { // eslint-disable-line
+function Icon({ type, className, style, ...restOfProps }) { // eslint-disable-line
   return (
     <div
-      className={styles.icon}
+      className={className}
       {...restOfProps}
     >
       <svg
@@ -27,7 +21,7 @@ function Icon({ type, style, ...restOfProps }) { // eslint-disable-line
         className={styles.svgIcon}
         style={style}
       >
-      {iconMapping[type]};
+      {icons[type]}
       </svg>
     </div>
   );
@@ -35,6 +29,7 @@ function Icon({ type, style, ...restOfProps }) { // eslint-disable-line
 
 Icon.propTypes = {
   type: React.PropTypes.string,
+  className: React.PropTypes.string,
   style: React.PropTypes.object,
 };
 

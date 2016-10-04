@@ -54,8 +54,8 @@ class Account extends React.Component { // eslint-disable-line react/prefer-stat
 
   onClickAuth(type) {
     if (!this.state.emailError) {
-      if (type === 'login') this.props.registerUser(this.state.email, this.state.password);
-      if (type === 'register') this.props.loginUser(this.state.email, this.state.password);
+      if (type === 'login') this.props.loginUser(this.state.email, this.state.password);
+      if (type === 'register') this.props.registerUser(this.state.email, this.state.password);
     }
   }
 
@@ -65,8 +65,8 @@ class Account extends React.Component { // eslint-disable-line react/prefer-stat
         <div className={styles.account__section} style={stylesToApply.loginContainer}>
           <div className={styles.account__sectionContainer}>
             <form className={styles.account__form} onSubmit={(e) => e.preventDefault()}>
-              <h3 style={stylesToApply.loginHeader}>Sign in to Infinews</h3>
-              <p style={stylesToApply.loginSubheader}>Read and create the richest news snippets in any field today.</p>
+              <h3 style={stylesToApply.loginHeader}>Sign in to Rhead</h3>
+              <p style={stylesToApply.loginSubheader}>Teach the world through email, easier than ever</p>
               <formgroup>
                 <input
                   className={styles.login__input}
@@ -91,7 +91,8 @@ class Account extends React.Component { // eslint-disable-line react/prefer-stat
                     bottom: 42,
                     left: 280,
                   }}
-                  onClick={() => this.setState({ displayPassword: !this.state.displayPassword })}
+                  onMouseUp={() => this.setState({ displayPassword: !this.state.displayPassword })}
+                  onMouseDown={() => this.setState({ displayPassword: !this.state.displayPassword })}
                 />
               </formgroup>
               <formgroup style={{ marginTop: 40 }}>

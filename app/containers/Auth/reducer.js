@@ -5,6 +5,7 @@
  */
 
 import { fromJS } from 'immutable';
+import { REHYDRATE } from 'redux-persist/constants';
 import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
@@ -12,7 +13,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  userObject: {},
+  userObject: false,
   authErrors: false,
   isAuthing: false,
 });
@@ -29,6 +30,8 @@ function authReducer(state = initialState, action) {
       return state
         .set('isAuthing', false)
         .set('authErrors', action.payload);
+    case REHYDRATE:
+      return action.payload.auth || state;
     default:
       return state;
   }

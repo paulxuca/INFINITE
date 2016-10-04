@@ -9,18 +9,20 @@ import { loginUserSuccess, loginUserError } from './actions';
 function* registerUser(payload) {
   const registerResponseData = yield call(postRequest, payload, api('/auth/register'));
 
-  if (registerResponseData.err) {
-    yield put(loginUserError(registerResponseData.err));
+  if (registerResponseData.error) {
+    const error = yield registerResponseData.error.json();
+    yield put(loginUserError(error));
   } else {
     yield put(loginUserSuccess(registerResponseData.data));
   }
 }
 
 function* loginUser(payload) {
-  const loginUserData = yield call(postRequest, payload, api('/auth/register'));
+  const loginUserData = yield call(postRequest, payload, api('/auth/login'));
 
-  if (loginUserData.err) {
-    yield put(loginUserError(loginUserData.err));
+  if (loginUserData.error) {
+    const error = yield loginUserData.error.json();
+    yield put(loginUserError(error));
   } else {
     yield put(loginUserSuccess(loginUserData.data));
   }

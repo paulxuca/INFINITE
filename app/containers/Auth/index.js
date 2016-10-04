@@ -7,7 +7,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loginUser, registerUser } from './actions';
-import selectAuth from './selectors';
 import styles from './styles.css';
 import Account from 'components/Account';
 
@@ -29,8 +28,6 @@ Auth.propTypes = {
   registerUser: React.PropTypes.func,
 };
 
-const mapStateToProps = selectAuth();
-
 function mapDispatchToProps(dispatch) {
   return {
     loginUser: (email, password) => dispatch(loginUser(email, password)),
@@ -38,4 +35,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(null, mapDispatchToProps)(Auth);

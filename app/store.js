@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+import { persistStore, autoRehydrate } from 'redux-persist-immutable';
 import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -23,6 +24,7 @@ export default function configureStore(initialState = {}, history) {
   const enhancers = [
     applyMiddleware(...middlewares),
     devtools(),
+    autoRehydrate(),
   ];
 
   const store = createStore(
@@ -31,8 +33,12 @@ export default function configureStore(initialState = {}, history) {
     compose(...enhancers)
   );
 
+
   // Create hook for async sagas
   store.runSaga = sagaMiddleware.run;
+  // used for persisting redux
+  persistStore(store, { blacklist: ['language', 'route'] });
+
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
