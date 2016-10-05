@@ -1,0 +1,22 @@
+.draftEditor { /* stylelint-disable */
+  flex: 1;
+  display: flex;
+}
+
+.inlineToolbar {
+	position: absolute;
+	height: 40px;
+	background-color: white;
+	z-index: 3;
+	border-radius: 4px;
+}
+
+.inlineToolbarButton {
+	height: 100%;
+	text-transform: capitalize;
+	padding: 5px 10px;
+}
+
+.inlineToolbarButton:first-of-type {
+	border-top-left-radius: 4px;
+}
