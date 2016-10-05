@@ -28,7 +28,9 @@ import { translationMessages } from './i18n';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
+import 'draft-js/dist/Draft.css';
 import styles from 'containers/App/styles.css';
+
 const dSObs = new FontFaceObserver('Droid Serif');
 
 dSObs.load().then(() => {

@@ -1,22 +1,81 @@
 .draftEditor { /* stylelint-disable */
   flex: 1;
   display: flex;
+	justify-content: center;
+}
+
+.draftEditorContainer {
+	width: 50vw;
+	margin: 20px auto 0px auto;
+	position: relative;
+	line-height: 28px;
 }
 
 .inlineToolbar {
 	position: absolute;
-	height: 40px;
+	height: 50px;
+	font-family: Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 200;
 	background-color: white;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 1px 10px rgba(0, 0, 0, .35);
 	z-index: 3;
-	border-radius: 4px;
+	border-radius: 2px;
 }
 
 .inlineToolbarButton {
 	height: 100%;
 	text-transform: capitalize;
-	padding: 5px 10px;
+	padding: 0px 16px;
+	color: #E2E2E2;
+}
+
+.inlineToolbarButton:hover {
+	color: rgba(0,0,0,0.7);
 }
 
 .inlineToolbarButton:first-of-type {
-	border-top-left-radius: 4px;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+.inlineToolbarButton:last-of-type {
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+
+.inlineToolbar::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: -7px;
+  background: white;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border-top-left-radius: 1px;
+  left: 50%;
+  border-right: 2px solid rgba(0, 0, 0, .2);
+  border-bottom: 2px solid rgba(0, 0, 0, .2);
+}
+
+.sideToolbar {
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	left: -60px;
+}
+
+.sideToolbar div {
+	margin: 0 5px;
+}
+
+.sideToolbarMenu {
+	height: 40px;
+	background-color: white;
+	width: 200px;
+	position: absolute;
+	z-index: 3;
+	bottom: 20px;
 }
