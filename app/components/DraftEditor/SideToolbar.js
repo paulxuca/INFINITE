@@ -1,6 +1,39 @@
 import React from 'react';
 import styles from './styles.css';
 import Icon from 'components/Icon';
+import { BLOCK_TYPES } from './constants';
+
+
+const SideToolbarButton = ({ onClick, icon, label, blockType, active }) => {
+  const toDisplay = icon ? <Icon type={icon} /> : <span>{label}</span>;
+  return (
+    <button
+      onMouseDown={(e) => {
+        e.preventDefault();
+        onClick(blockType);
+      }}
+    >
+      {icon ? 
+        <Icon
+          type={icon}
+          fill={active ? '#4080ff' : null}
+        />
+        :
+        <span
+          style={{ color: active ? '#4080ff' : 'inherit' }}
+        >{label}</span>
+      }
+    </button>
+  );
+};
+
+SideToolbarButton.propTypes = {
+  icon: React.PropTypes.string,
+  blockType: React.PropTypes.string,
+  onClick: React.PropTypes.func,
+  label: React.PropTypes.string,
+  active: React.PropTypes.bool,
+};
 
 class SideToolbar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -8,25 +41,41 @@ class SideToolbar extends React.Component { // eslint-disable-line react/prefer-
     this.state = {
       optionsMenuOpen: false,
     };
-    this.toggleMenuOpen = this.toggleMenuOpen.bind(this);
-  }
-
-  toggleMenuOpen() {
-    this.setState({ optionsMenuOpen: !this.state.optionsMenuOpen });
   }
 
   render() {
     const { optionsMenuOpen } = this.state;
+    const { editorState } = this.props;
+    const selection = editorState.getSelection();
+    const blockType = editorState.getCurrentContent()
+                                .getBlockForKey(selection.getStartKey())
+                                .getType();
     return (
-      <div className={styles.sideToolbar} style={{ top: this.props.offsetTop }}>
+      <div
+        className={styles.sideToolbar}
+        style={{ top: this.props.offsetTop }}
+      >
+        <Icon type="image" />
         <Icon
           type="dotMenu"
-          onMouseEnter={this.toggleMenuOpen}
-          onMouseLeave={this.toggleMenuOpen}
+          onMouseEnter={() => this.setState({ optionsMenuOpen: true })}
+          onMouseLeave={() => this.setState({ optionsMenuOpen: false })}
         />
-        <Icon type="image" />
         {optionsMenuOpen ?
-          <div className={styles.sideToolbarMenu}>
+          <div
+            className={styles.sideToolbarMenu}
+            onMouseEnter={() => this.setState({ optionsMenuOpen: true })}
+            onMouseLeave={() => this.setState({ optionsMenuOpen: false })}
+          >
+            {BLOCK_TYPES.map((each) =>
+              <SideToolbarButton
+                key={each.style}
+                blockType={each.style}
+                onClick={this.props.toggleBlockType}
+                icon={each.icon}
+                label={each.label}
+                active={each.style === blockType}
+              />)}
           </div>
         : null
         }
@@ -36,7 +85,9 @@ class SideToolbar extends React.Component { // eslint-disable-line react/prefer-
 }
 
 SideToolbar.propTypes = {
+  toggleBlockType: React.PropTypes.func,
   offsetTop: React.PropTypes.number,
+  editorState: React.PropTypes.object,
 };
 
 export default SideToolbar;

@@ -8,7 +8,7 @@ import React from 'react';
 import styles from './styles.css';
 import * as icons from './iconMapping';
 
-function Icon({ type, className, style, ...restOfProps }) { // eslint-disable-line
+function Icon({ type, className, style, fill, ...restOfProps }) { // eslint-disable-line
   return (
     <div
       className={className}
@@ -19,7 +19,10 @@ function Icon({ type, className, style, ...restOfProps }) { // eslint-disable-li
         height="17"
         viewBox="0 0 17 17"
         className={styles.svgIcon}
-        style={style}
+        style={{
+          ...style,
+          fill,
+        }}
       >
       {icons[type]}
       </svg>
@@ -27,10 +30,15 @@ function Icon({ type, className, style, ...restOfProps }) { // eslint-disable-li
   );
 }
 
+Icon.defaultProps = {
+  fill: '#000000',
+}
+
 Icon.propTypes = {
   type: React.PropTypes.string,
   className: React.PropTypes.string,
   style: React.PropTypes.object,
+  fill: React.PropTypes.string,
 };
 
 export default Icon;
