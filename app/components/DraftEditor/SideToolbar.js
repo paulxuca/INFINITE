@@ -5,12 +5,12 @@ import { BLOCK_TYPES } from './constants';
 
 
 const SideToolbarButton = ({ onClick, icon, label, blockType, active }) => {
-  let toDisplay; 
-  
+  let toDisplay;
+
   if (icon) {
-    toDisplay = <Icon type={icon} />;
+    toDisplay = <Icon fill={active && '#4080ff'} type={icon} />;
   } else {
-    toDisplay = <span>{label}</span>;
+    toDisplay = <span style={{ color: active && '#4080ff' }}>{label}</span>;
   }
 
   return (
@@ -20,16 +20,7 @@ const SideToolbarButton = ({ onClick, icon, label, blockType, active }) => {
         onClick(blockType);
       }}
     >
-      {icon ? 
-        <Icon
-          type={icon}
-          fill={active ? '#4080ff' : null}
-        />
-        :
-        <span
-          style={{ color: active ? '#4080ff' : 'inherit' }}
-        >{label}</span>
-      }
+      {toDisplay}
     </button>
   );
 };
@@ -57,7 +48,7 @@ class SideToolbar extends React.Component { // eslint-disable-line react/prefer-
     const blockType = editorState.getCurrentContent()
                                 .getBlockForKey(selection.getStartKey())
                                 .getType();
-    
+
     const inlineIcon = BLOCK_TYPES.find((each) => each.style === blockType);
     return (
       <div
@@ -66,7 +57,7 @@ class SideToolbar extends React.Component { // eslint-disable-line react/prefer-
       >
         <Icon type="image" />
         <Icon
-          type={(inlineIcon && inlineIcon.icon) || "dotMenu"}
+          type={(inlineIcon && inlineIcon.icon) || 'dotMenu'}
           onMouseEnter={() => this.setState({ optionsMenuOpen: true })}
           onMouseLeave={() => this.setState({ optionsMenuOpen: false })}
         />

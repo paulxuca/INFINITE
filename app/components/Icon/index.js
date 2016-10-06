@@ -30,13 +30,16 @@ function Icon({ type, className, style, fill, ...restOfProps }) { // eslint-disa
 
 Icon.defaultProps = {
   fill: '#000000',
-}
+};
 
 Icon.propTypes = {
   type: React.PropTypes.string,
   className: React.PropTypes.string,
   style: React.PropTypes.object,
-  fill: React.PropTypes.string,
+  fill: React.PropTypes.oneOfType([
+    React.PropTypes.bool,
+    React.PropTypes.string,
+  ]),
 };
 
 export default Icon;

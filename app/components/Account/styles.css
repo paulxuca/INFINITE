@@ -44,8 +44,8 @@
 .login__buttonSeperator::before {
   content: '';
   position: relative;
-  width: 10vw;
-  background-color: #E2E2E2;
+  width: 3vw;
+  background-color: rgba(0, 0, 0, 0.4);
   display: inline-block;
   height: 2px;
   bottom: 3px;
@@ -55,8 +55,8 @@
 .login__buttonSeperator::after {
   content: '';
   position: relative;
-  width: 10vw;
-  background-color: #E2E2E2;
+  width: 3vw;
+  background-color: rgba(0, 0, 0, 0.4);
   display: inline-block;
   height: 2px;
   bottom: 3px;

@@ -3,7 +3,6 @@ export const INLINE_STYLES = [
   { buttonText: 'italic', style: 'ITALIC' },
   { buttonText: 'mono', style: 'CODE' },
   { buttonText: 'underline', style: 'UNDERLINE' },
-  { buttonText: 'link', style: 'LINK' },
 ];
 
 export const BLOCK_TYPES = [
@@ -12,4 +11,15 @@ export const BLOCK_TYPES = [
   { icon: 'ulList', style: 'unordered-list-item' },
   { icon: 'olList', style: 'ordered-list-item' },
   { icon: 'quote', style: 'blockquote' },
+  { icon: 'code', style: 'code-block' },
 ];
+
+
+export const customStyleMap = {
+  CODE: {
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2,
+  },
+};

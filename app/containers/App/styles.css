@@ -10,16 +10,16 @@
   width: 100vw;
   max-width: 100vw;
   flex-direction: column;
-  font-family: 'Droid Serif', Georgia, serif;
-  color: #4c4c4c;
+  font-family: Georgia, serif;
+  color: rgba(0,0,0,.8);
 }
 
 .appContainer {
   flex: 1;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: #f9f9f9;
   display: flex;
+  background-color: white;
 }
 
 p {

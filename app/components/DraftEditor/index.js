@@ -15,6 +15,9 @@ import {
   getSelectionCoords,
   getSelectedBlockElement,
 } from './utilities';
+import {
+  customStyleMap,
+} from './constants';
 import InlineToolbar from './InlineToolbar';
 import SideToolbar from './SideToolbar';
 import styles from './styles.css';
@@ -44,8 +47,9 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
 
   handleChange(editorState) {
     const editorStateSelection = editorState.getSelection();
-    const shouldNotDisplay = editorStateSelection.anchorOffset === editorStateSelection.focusOffset;
-    if (!editorStateSelection.isCollapsed() && !shouldNotDisplay && editorStateSelection.hasFocus) {
+    const isCollapsedCondition = !editorStateSelection.isCollapsed();
+    const shouldNotDisplay = (editorStateSelection.anchorOffset === editorStateSelection.focusOffset) && (editorStateSelection.anchorKey === editorStateSelection.focusKey);
+    if (isCollapsedCondition && !shouldNotDisplay) {
       const selectionRange = getSelectionRange();
       const { left, top } = getSelectionCoords(this.state.toolbar.position, selectionRange);
       this.setState({ toolbar: {
@@ -138,6 +142,7 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
             editorState={this.state.editorState}
             placeholder="Compose something..."
             handleKeyCommand={this.handleKeyCommand}
+            customStyleMap={customStyleMap}
           />
         </div>
       </div>

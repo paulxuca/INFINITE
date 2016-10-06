@@ -21,7 +21,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
-import FontFaceObserver from 'fontfaceobserver';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -29,15 +28,6 @@ import { translationMessages } from './i18n';
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
 import 'draft-js/dist/Draft.css';
-import styles from 'containers/App/styles.css';
-
-const dSObs = new FontFaceObserver('Droid Serif');
-
-dSObs.load().then(() => {
-  document.body.classList.add(styles.fontLoaded);
-}, () => {
-  document.body.classList.remove(styles.fontLoaded);
-});
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
