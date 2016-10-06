@@ -45,7 +45,7 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
   handleChange(editorState) {
     const editorStateSelection = editorState.getSelection();
     const shouldNotDisplay = editorStateSelection.anchorOffset === editorStateSelection.focusOffset;
-    if (!editorStateSelection.isCollapsed() && !shouldNotDisplay) {
+    if (!editorStateSelection.isCollapsed() && !shouldNotDisplay && editorStateSelection.hasFocus) {
       const selectionRange = getSelectionRange();
       const { left, top } = getSelectionCoords(this.state.toolbar.position, selectionRange);
       this.setState({ toolbar: {

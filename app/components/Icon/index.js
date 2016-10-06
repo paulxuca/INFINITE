@@ -9,6 +9,7 @@ import styles from './styles.css';
 import * as icons from './iconMapping';
 
 function Icon({ type, className, style, fill, ...restOfProps }) { // eslint-disable-line
+  const styleObject = Object.assign({}, style, { fill });
   return (
     <div
       className={className}
@@ -19,10 +20,7 @@ function Icon({ type, className, style, fill, ...restOfProps }) { // eslint-disa
         height="17"
         viewBox="0 0 17 17"
         className={styles.svgIcon}
-        style={{
-          ...style,
-          fill,
-        }}
+        style={styleObject}
       >
       {icons[type]}
       </svg>

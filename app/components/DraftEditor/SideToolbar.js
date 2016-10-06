@@ -5,7 +5,14 @@ import { BLOCK_TYPES } from './constants';
 
 
 const SideToolbarButton = ({ onClick, icon, label, blockType, active }) => {
-  const toDisplay = icon ? <Icon type={icon} /> : <span>{label}</span>;
+  let toDisplay; 
+  
+  if (icon) {
+    toDisplay = <Icon type={icon} />;
+  } else {
+    toDisplay = <span>{label}</span>;
+  }
+
   return (
     <button
       onMouseDown={(e) => {
@@ -50,6 +57,8 @@ class SideToolbar extends React.Component { // eslint-disable-line react/prefer-
     const blockType = editorState.getCurrentContent()
                                 .getBlockForKey(selection.getStartKey())
                                 .getType();
+    
+    const inlineIcon = BLOCK_TYPES.find((each) => each.style === blockType);
     return (
       <div
         className={styles.sideToolbar}
@@ -57,7 +66,7 @@ class SideToolbar extends React.Component { // eslint-disable-line react/prefer-
       >
         <Icon type="image" />
         <Icon
-          type="dotMenu"
+          type={(inlineIcon && inlineIcon.icon) || "dotMenu"}
           onMouseEnter={() => this.setState({ optionsMenuOpen: true })}
           onMouseLeave={() => this.setState({ optionsMenuOpen: false })}
         />
