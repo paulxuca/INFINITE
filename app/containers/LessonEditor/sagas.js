@@ -14,7 +14,7 @@ function* initialLoadAction(payload) {
 function* initalCreateAction(id, action) {
   const uniqueID = generateUUID();
   if (id === 'new') {
-    window.history.pushState('page2', 'Title', `/lessons/${uniqueID}/${action}`);
+    window.history.pushState({}, '', `/lessons/${uniqueID}/${action}`);
   }
   yield put(initalCreate());
 }
