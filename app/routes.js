@@ -72,6 +72,26 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/lessons',
+      name: 'lessonEditor',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/LessonEditor/reducer'),
+          System.import('containers/LessonEditor/sagas'),
+          System.import('containers/LessonEditor'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('lessonEditor', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

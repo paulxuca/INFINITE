@@ -10,6 +10,14 @@ import Icon from 'components/Icon';
 import Dropdown from 'components/Dropdown';
 import styles from './styles.css';
 
+const DropdownItem = (props) => {
+  return (
+    <li>
+
+    </li>
+  );
+};
+
 class AuthenticatedNavigation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
@@ -47,7 +55,11 @@ class AuthenticatedNavigation extends React.Component { // eslint-disable-line r
             left: 50,
           }}
           closeDropdown={() => this.onCloseDropdown()}
-        />
+        >
+          <ul className={styles.authenticatedNavigation__dropdown}>
+            <DropdownItem />
+          </ul>
+        </Dropdown>
       </div>
     );
   }

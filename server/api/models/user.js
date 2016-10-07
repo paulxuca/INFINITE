@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     enum: ['admin', 'editor', 'user'],
     default: 'user',
   },
+  lessonOwnership: [String],
 });
 
 userSchema.pre('save', function (next) {

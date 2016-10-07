@@ -38,6 +38,7 @@ class Dropdown extends React.Component { // eslint-disable-line react/prefer-sta
           display: this.props.active ? 'block' : 'none',
         }, this.props.style)}
       >
+        {React.Children.toArray(this.props.children)}
       </div>
     );
   }
@@ -48,6 +49,7 @@ Dropdown.propTypes = {
   active: React.PropTypes.bool,
   style: React.PropTypes.object,
   closeDropdown: React.PropTypes.func,
+  children: React.PropTypes.node,
 };
 
 export default Dropdown;
