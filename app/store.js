@@ -37,7 +37,7 @@ export default function configureStore(initialState = {}, history) {
   // Create hook for async sagas
   store.runSaga = sagaMiddleware.run;
   // used for persisting redux
-  persistStore(store, { blacklist: ['language', 'route'] });
+  persistStore(store, { blacklist: ['language', 'route', 'lessonEditor'] });
 
 
   // Make reducers hot reloadable, see http://mxs.is/googmo

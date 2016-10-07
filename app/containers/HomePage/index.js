@@ -11,7 +11,6 @@
 
 import React from 'react';
 // import { FormattedMessage } from 'react-intl';
-import DraftEditor from 'components/DraftEditor';
 // import messages from './messages';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -19,7 +18,6 @@ export default class HomePage extends React.Component { // eslint-disable-line r
   render() {
     return (
       <div style={{ flex: 1 }}>
-        <DraftEditor />
       </div>
     );
   }

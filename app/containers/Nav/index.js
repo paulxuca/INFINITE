@@ -64,6 +64,7 @@ export class Nav extends React.Component { // eslint-disable-line react/prefer-s
           {this.props.isAuthed ?
             <AuthenticatedNavigation
               toggleSideNav={() => this.toggleSideNav()}
+              createNewFunction={(type) => this.props.createNew(type)}
             />
             : null}
         </div>
@@ -85,11 +86,13 @@ export class Nav extends React.Component { // eslint-disable-line react/prefer-s
 Nav.propTypes = {
   isAuthed: React.PropTypes.bool,
   changeRoute: React.PropTypes.func,
+  createNew: React.PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (newRoute) => dispatch(push(newRoute)),
+    createNew: (type) => dispatch(push(`${type}/new/edit`)),
   };
 }
 
@@ -100,4 +103,5 @@ const mapStateToProps = createStructuredSelector({
 export {
   NavSection,
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

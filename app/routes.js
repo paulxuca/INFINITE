@@ -72,7 +72,7 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
-      path: '/lessons',
+      path: '/lessons/:id/:action',
       name: 'lessonEditor',
       getComponent(nextState, cb) {
         const importModules = Promise.all([

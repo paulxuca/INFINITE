@@ -10,12 +10,21 @@ import Icon from 'components/Icon';
 import Dropdown from 'components/Dropdown';
 import styles from './styles.css';
 
-const DropdownItem = (props) => {
-  return (
-    <li>
-
-    </li>
+const DropdownItem = ({ icon, text, onClick }) =>
+  (
+  <li
+    onMouseDown={onClick}
+    className={styles.authenticatedNavigation__dropdownItem}
+  >
+    {icon ? <Icon type={icon} /> : null}
+    <span className={styles.authenticatedNavigation__dropdownItemText}>{text}</span>
+  </li>
   );
+
+DropdownItem.propTypes = {
+  icon: React.PropTypes.string,
+  text: React.PropTypes.string,
+  onClick: React.PropTypes.func,
 };
 
 class AuthenticatedNavigation extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -39,7 +48,11 @@ class AuthenticatedNavigation extends React.Component { // eslint-disable-line r
     return (
       <div className={styles.authenticatedNavigation__container}>
         <NavSection style={{ maxWidth: 100 }}>
-          <Icon type="menu" onClick={this.props.toggleSideNav} className={styles.iconFill} />
+          <Icon
+            type="menu"
+            onClick={this.props.toggleSideNav}
+            className={styles.iconFill}
+          />
         </NavSection>
         <NavSection
           style={{ maxWidth: 100 }}
@@ -57,7 +70,11 @@ class AuthenticatedNavigation extends React.Component { // eslint-disable-line r
           closeDropdown={() => this.onCloseDropdown()}
         >
           <ul className={styles.authenticatedNavigation__dropdown}>
-            <DropdownItem />
+            <DropdownItem
+              icon="pencil"
+              text="Create new Lesson"
+              onClick={() => this.props.createNewFunction('lessons')}
+            />
           </ul>
         </Dropdown>
       </div>
@@ -67,6 +84,7 @@ class AuthenticatedNavigation extends React.Component { // eslint-disable-line r
 
 AuthenticatedNavigation.propTypes = {
   toggleSideNav: React.PropTypes.func,
+  createNewFunction: React.PropTypes.func,
 };
 
 export default AuthenticatedNavigation;

@@ -34,7 +34,6 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
   constructor() {
     super();
     this.state = {
-      editorState: EditorState.createEmpty(),
       toolbar: inlineToolbarInitial,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -64,7 +63,7 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
     } else {
       this.setState({ toolbar: inlineToolbarInitial });
     }
-    this.setState({ editorState });
+    this.props.onChange(editorState);
     setTimeout(this.handleUpdateSelection, 0);
   }
 
@@ -73,7 +72,7 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
   }
 
   handleKeyCommand(command) {
-    const { editorState } = this.state;
+    const { editorState } = this.props;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
       this.handleChange(newState);
@@ -84,13 +83,13 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
 
   handleInlineStyleChange(inlineStyle) {
     this.handleChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle)
+      RichUtils.toggleInlineStyle(this.props.editorState, inlineStyle)
     );
   }
 
   handleBlockTypeChange(blockType) {
     this.handleChange(
-      RichUtils.toggleBlockType(this.state.editorState, blockType)
+      RichUtils.toggleBlockType(this.props.editorState, blockType)
     );
   }
 
@@ -127,7 +126,7 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
         <InlineToolbar
           active={this.state.toolbar.active}
           position={this.state.toolbar.position}
-          editorStyles={this.state.editorState.getCurrentInlineStyle()}
+          editorStyles={this.props.editorState.getCurrentInlineStyle()}
           toggleChange={this.handleInlineStyleChange}
         />
         <div className={styles.draftEditorContainer}>
@@ -135,12 +134,12 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
             <SideToolbar
               offsetTop={sideToolbarOffsetTop}
               toggleBlockType={this.handleBlockTypeChange}
-              editorState={this.state.editorState}
+              editorState={this.props.editorState}
             /> : null}
           <Editor
             ref={(editorComponent) => { this.editor = editorComponent; }}
             onChange={this.handleChange}
-            editorState={this.state.editorState}
+            editorState={this.props.editorState}
             placeholder="Compose something..."
             handleKeyCommand={this.handleKeyCommand}
             customStyleMap={customStyleMap}
@@ -150,5 +149,10 @@ class DraftEditor extends React.Component { // eslint-disable-line react/prefer-
     );
   }
 }
+
+DraftEditor.propTypes = {
+  editorState: React.PropTypes.object,
+  onChange: React.PropTypes.func,
+};
 
 export default DraftEditor;

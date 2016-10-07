@@ -14,12 +14,11 @@ const selectLessonEditorDomain = () => (state) => state.get('lessonEditor');
  * Default selector used by LessonEditor
  */
 
-const selectLessonEditor = () => createSelector(
+const selectEditorState = () => createSelector(
   selectLessonEditorDomain(),
-  (substate) => substate.toJS()
+  (substate) => substate.get('editorState'),
 );
 
-export default selectLessonEditor;
 export {
-  selectLessonEditorDomain,
+  selectEditorState,
 };

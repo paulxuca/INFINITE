@@ -5,16 +5,26 @@
  */
 
 import { fromJS } from 'immutable';
+import { EditorState } from 'draft-js';
 import {
-  DEFAULT_ACTION,
+  INITIAL_LOAD,
+  INITIAL_CREATE,
+  UPDATE_EDITOR_STATE,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  isLoading: false,
+  editorState: false,
+});
 
 function lessonEditorReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case INITIAL_LOAD:
+      return state.set('isLoading', true);
+    case INITIAL_CREATE:
+      return state.set('editorState', EditorState.createEmpty());
+    case UPDATE_EDITOR_STATE:
+      return state.set('editorState', action.payload);
     default:
       return state;
   }
